@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Hello Short Interval Presenter!</title>
+    <script src="./bootstrap.js"></script>
+  </head>
+  <body>
+    <noscript>This page contains WASM, please enable JS.</noscript>
+    <table id="examples">
+      <tbody>
+        <tr><td>0.01</td><td></td></tr>
+        <tr><td>1.0</td><td></td></tr>
+        <tr><td>10.0</td><td></td></tr>
+        <tr><td>100.0</td><td></td></tr>
+        <tr><td>1000.0</td><td></td></tr>
+        <tr><td>10000.0</td><td></td></tr>
+        <tr><td>100000.0</td><td></td></tr>
+        <tr><td>1000000.0</td><td></td></tr>
+        <tr><td>10000000.0</td><td></td></tr>
+        <tr><td>100000000.0</td><td></td></tr>
+        <tr><td>1000000000.0</td><td></td></tr>
+        <tr><td>10000000000.0</td><td></td></tr>
+      </tbody>
+    </table>
+    <script>
+        setTimeout(
+            function () {
+                for (row of document.querySelectorAll("#examples tr")) {
+                    const input = row.querySelector("td:nth-of-type(1)");
+                    const output = row.querySelector("td:nth-of-type(2)");
+                    const float = parseFloat(input.innerText);
+                    if (typeof window.present === "function") {
+                        output.innerText = window.present(float);
+                    } else {
+                        output.innerText =
+                            "The present() utility isn't loaded after 200ms.";
+                    }
+                }
+            },
+            200
+        );
+    </script>
+  </body>
+</html>
